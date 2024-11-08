@@ -29,7 +29,6 @@ Return an array answer, where answer[i] is the answer to the ith query.
 }
 
 
-Example 1:
 
 Input: nums = [0,1,1,3], maximumBit = 2
 Output: [0,3,2,3]
