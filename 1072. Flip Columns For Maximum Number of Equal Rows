@@ -1,0 +1,56 @@
+You are given an m x n binary matrix matrix.
+
+You can choose any number of columns in the matrix and flip every cell in that column (i.e., Change the value of the cell from 0 to 1 or vice versa).
+
+Return the maximum number of rows that have all values equal after some number of flips.
+
+ 
+
+Example 1:
+
+Input: matrix = [[0,1],[1,1]]
+Output: 1
+Explanation: After flipping no values, 1 row has all values equal.
+Example 2:
+
+Input: matrix = [[0,1],[1,0]]
+Output: 2
+Explanation: After flipping values in the first column, both rows have equal values.
+Example 3:
+
+Input: matrix = [[0,0,0],[0,0,1],[1,1,0]]
+Output: 2
+Explanation: After flipping values in the first two columns, the last two rows have equal values.
+ 
+
+Constraints:
+
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 300
+matrix[i][j] is either 0 or 1.
+
+--------------------------------------------------------------------------------------------------
+
+class Solution {
+    public int maxEqualRowsAfterFlips(int[][] matrix) {
+        Map<String, Integer> map = new HashMap<>();
+        int res = 0;
+        for(int[]row : matrix) {
+            String k = parse(row);
+            map.put(k, map.getOrDefault(k, 0) + 1);
+            res = Math.max(res, map.get(k));
+        }
+        return res;
+    }
+
+    String parse(int[] row) {
+        StringBuilder sb = new StringBuilder();
+        sb.append('A');
+        for(int i = 1; i < row.length; i++) {
+            if (row[i] == row[0]) sb.append('A');
+            else sb.append('B');
+        }
+        return sb.toString();
+    }
+}
